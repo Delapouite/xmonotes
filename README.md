@@ -127,4 +127,27 @@ XMonad.workspaces :: XConfig l -> [String]
 
 A function taking a XConfig as argument and giving a List of strings.
 
-This function is automagically created for us when using the Record way to declare data types as described in this chapter of [LYHGG](http://learnyouahaskell.com/making-our-own-types-and-typeclasses#record-syntax).
+This function is automagically created for us when using the Record way to declare data types as described in this chapter of [LYHGG](http://learnyouahaskell.com/making-our-own-types-and-typeclasses#record-syntax). It is attached to XMonad by the game of re-exports.
+
+### KeyMask Modifiers
+
+`(f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]`
+
+The `0` above is quite intriguing. It's coupled with a function `W.greedyView`. In the other tuple of the list, the function `W.shift` is this time coupled with an explicit `shiftMask`. What could be the real name of the `0` mask? Let's visit the `Grawphics.X11` module which is needed by XMonad. This [Types.hs file](https://github.com/xmonad/X11/blob/master/Graphics/X11/Types.hsc) has an interesting part:
+
+```haskell
+type KeyMask            = Modifier
+#{enum KeyMask,
+ , noModMask            = 0
+ , shiftMask            = ShiftMask
+ , lockMask             = LockMask
+ , controlMask          = ControlMask
+ , mod1Mask             = Mod1Mask
+ , mod2Mask             = Mod2Mask
+ , mod3Mask             = Mod3Mask
+ , mod4Mask             = Mod4Mask
+ , mod5Mask             = Mod5Mask
+ }
+```
+
+Here are the 8 original KeyMasks from the X protocol (before xkb era). `0` is just a shorter way to write `noModMask`. `shiftMask` could have been written `1` but the result would have been even harder to decipher. Those masks are then used in a OR bitwise operation with the `.|.` operator.
