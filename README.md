@@ -13,6 +13,20 @@ I hope it may also help you along the way. Feel free to contribute.
 
 ## Key mapping
 
+### As patterns
+
+First line and weird stuff already. Haskell is that magical!
+
+```
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
+  -- …
+]
+```
+
+What is the purpose of `@`? It's used in what's called *as patterns*. `conf` is a more convenient way to reuse `(XConfig {XMonad.modMask = modm})` in the following code.
+
+### List comprehensions
+
 The effects of the following snippet are well commented.
 Changing [keys](https://github.com/Delapouite/xkb-walkthrough) is also trivial. But the meaning of the `|` and `<-` symbols can be quite alien.
 
@@ -37,8 +51,6 @@ generating code is written between this couple of `[]`, we've got our first
 clue: it's a [list comprehension](https://en.wikipedia.org/wiki/List_comprehension).
 This pattern is not available in JavaScript yet but is pretty common in many languages like
 Python and Ruby.
-
-### List comprehensions
 
 Go ahead and read the Overview section of the Wikipedia link provided above.
 We're lucky, Haskell is used to illustrate their example:
@@ -128,6 +140,11 @@ XMonad.workspaces :: XConfig l -> [String]
 A function taking a XConfig as argument and giving a List of strings.
 
 This function is automagically created for us when using the Record way to declare data types as described in this chapter of [LYHGG](http://learnyouahaskell.com/making-our-own-types-and-typeclasses#record-syntax). It is attached to XMonad by the game of re-exports.
+Hint: the exact same formula can be found on this line:
+
+```haskell
+((modm, xK_Return), spawn $ XMonad.terminal conf)
+```
 
 ### KeyMask Modifiers
 
