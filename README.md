@@ -168,3 +168,22 @@ type KeyMask            = Modifier
 ```
 
 Here are the 8 original KeyMasks from the X protocol (before xkb era). `0` is just a shorter way to write `noModMask`. `shiftMask` could have been written `1` but the result would have been even harder to decipher. Those masks are then used in a OR bitwise operation with the `.|.` operator.
+
+### IO
+
+The `return` keyword can be misleading in regards of other languages. In Haskell it's found in `do` blocks where IO steps are described. The goal of this construct is to encapsulate a normal value into a IO one.
+At the opposite, the `<-` is used to extract value.
+
+Here's a handy analogy if you already know the concept of Promises in JavaScript :
+
+```js
+let items = []
+// in every case, we expect to grab a Promise
+getItemsPromise = () =>
+  items.length
+    // `Promise.resolve` has the same encapsulation purpose than Haskell's return
+    ? Promise.resolve(items)
+    // `then` serves the same extraction role as Haskell's <-
+    : fetch('https://example.com/items').then(res => res.json())
+
+```
