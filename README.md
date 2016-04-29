@@ -187,3 +187,7 @@ getItemsPromise = () =>
     : fetch('https://example.com/items').then(res => res.json())
 
 ```
+
+### Layouts orientation
+
+Be careful: `Mirror` means that current layout will be rotated by 90 degrees. To have a true mirror effect horizontally or vertically, `XMonad.Layout.Reflect` should be used.
