@@ -188,6 +188,23 @@ getItemsPromise = () =>
 
 ```
 
-### Layouts orientation
+## Layouts orientation
 
 Be careful: `Mirror` means that current layout will be rotated by 90 degrees. To have a true mirror effect horizontally or vertically, `XMonad.Layout.Reflect` should be used.
+
+## ManageHook
+
+The manage hook section for Xmonad config describe what happens when a new window is created. In order to write these recipes you need to get a few info from windows running [xprop](https://www.x.org/archive/X11R6.7.0/doc/xprop.1.html).
+
+Here's the definition of composeAll:
+```haskell
+composeAll :: Monoid m => [m] -> m
+composeAll = mconcat
+```
+
+[composeOne](http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Hooks-ManageHelpers.html) can be used as an alternative: it will only trigger the first action.
+
+## X Standards
+
+ICCCM, Inter-Client Communication Conventions Manual, 2.0 1994
+EWMH, Extended Window Manager Hints, a.k.a. NetWM or Net WM, 2005
