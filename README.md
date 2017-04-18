@@ -99,14 +99,14 @@ Let's focus on this line:
 `zip` is not the most mysterious piece, as many JS libs such as Lodash provide a [similar function](https://lodash.com/docs#zip).
 
 ```js
-_.zip(['fred', 'barney'], [30, 40], [true, false]);
+_.zip(['fred', 'barney'], [30, 40], [true, false])
 // → [['fred', 30, true], ['barney', 40, false]]
 ```
 
 On top of my config file I set workspace with no meaningful names:
 
 ````haskell
-myWorkspaces = map show [0..10]`
+myWorkspaces = map show [0..10]
 ```
 
 And at the bottom:
